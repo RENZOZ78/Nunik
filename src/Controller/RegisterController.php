@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class RegisterController extends AbstractController
 {
@@ -22,7 +23,7 @@ class RegisterController extends AbstractController
     /**
      * @Route("/inscription", name="register")
      */
-    public function index(Request $request): Response
+    public function index(Request $request, UserPasswordEncoderInterface $encoder  ): Response
     {
 
         $user = new User();
@@ -31,9 +32,16 @@ class RegisterController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() &&$form->isValid() ){
+
             $user  = $form->getData();
 
-           // dd($user); //PERMET DE VERIFIER SI L'ENTREE DES DONNES FONICTIONNENT
+            $password = $encoder->encodePassword($user,$user->getPassword());
+
+            $user->setpassword($password);
+
+            //dd($password); //PERMET D EDEBUGGER lA VARIABLE $PASSWORD
+
+           // dd($user); //PERMET DE VERIFIER SI L'ENTREE DES DONNES FONICTIONNENT POUR LA VARIABLE $USER
 
             //ENREGISTRER LES INFOS DANS LA BDD GRACE A DOCTRINE
                 //METHODE1
@@ -43,9 +51,6 @@ class RegisterController extends AbstractController
 //                $doctrine->flush();
                 $this->entityManager->persist($user);
                 $this->entityManager->flush();
-
-
-
         }
 
         return $this->render('register/index.html.twig',[
