@@ -35,8 +35,10 @@ class RegisterController extends AbstractController
 
             $user  = $form->getData();
 
+                //  encoder
             $password = $encoder->encodePassword($user,$user->getPassword());
 
+            // setter le password
             $user->setpassword($password);
 
             //dd($password); //PERMET D EDEBUGGER lA VARIABLE $PASSWORD
@@ -49,6 +51,8 @@ class RegisterController extends AbstractController
                 //METHODE2 CONSTRUCTOR
 //                $doctrine->persist($user);
 //                $doctrine->flush();
+
+//                maj
                 $this->entityManager->persist($user);
                 $this->entityManager->flush();
         }
