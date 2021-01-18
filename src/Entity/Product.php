@@ -27,6 +27,12 @@ class Product
      */
     private $slug;
 
+//    /**
+//     * @ORM\Column(type="string", length=255)
+//     */
+//    private $search;
+
+
     /**
      * @ORM\Column(type="string", length=255)
      */
@@ -81,6 +87,17 @@ class Product
 
         return $this;
     }
+//    public function getSearch(): ?string
+//    {
+//        return $this->slug;
+//    }
+//
+//    public function setSearch(string $search): self
+//    {
+//        $this->slug = $search;
+//
+//        return $this;
+//    }
 
     public function getIllustration(): ?string
     {
