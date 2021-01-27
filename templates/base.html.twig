@@ -6,7 +6,7 @@
     <meta name="description" content="La boutique qui vend des produits originaux">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v4.1.1">
-    <title>{% block title %} Nunik - 100% original {% endblock %}  </title>
+    <title class="titre">{% block title %} Nunik - 100% original {% endblock %}  </title>
 
     <!-- Bootstrap core CSS -->
     <link href={{ asset('assets/css/bootstrap.min.css') }} rel="stylesheet">
@@ -31,6 +31,7 @@
     <!-- Custom styles for this template -->
     <link href="{{ asset('assets/css/carousel.css')}}" rel="stylesheet">
 </head>
+
 <body>
 <header>
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
@@ -59,6 +60,10 @@
                     <a href = "{{ path('app_login') }}" >Connexion</a > | <a href = "{{path('register')}}" >Inscription</a >
                 {% endif %}
             </div>
+            <a href = "{{ path('cart') }}" >
+                <img src = "{{ asset('assets/img/shopping-cart.png') }}" alt = "Mon panier" class="cart-icon" >
+            </a >
+
 
 {#            <form class="form-inline mt-2 mt-md-0">#}
 {#                <input class="form-control mr-sm-2" type="text" placeholder="Votre recherche" aria-label="Search">#}
@@ -66,6 +71,16 @@
 {#            </form>#}
         </div>
     </nav>
+
+    {% if block('jingle') is defined %}
+        <div class="jingle">
+            <video src = "{{ asset('assets/video/video.mp4') }}" autoplay muted loop ></video >
+                <span class="titre-1">Vous êtes ORIGINAL </span>
+                <span class="titre-1">Vous êtes SPECIAL </span>
+                <span class="titre-1">Vous êtes NUNIK </span>
+        </div>
+    {% endif %}
+
 </header>
 
 <main role="main">
@@ -145,5 +160,6 @@
 </main>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="{{ asset('assets/js/bootstrap.bundle.js')  }}"></script>
+<script src="app.js" ></script>
 </body>
 </html>

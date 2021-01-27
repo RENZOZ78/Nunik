@@ -2,6 +2,54 @@ body{
     position: relative;
 }
 
+/*.titre{*/
+/*    color: transparent;*/
+/*    background-clip: content-box ;*/
+/*    background-image: linear-gradient(to right, gold, crimson);*/
+/*}*/
+
+.jingle{
+    padding-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    /*font-size: 70px;*/
+    /*font-weight: 900;*/
+    /*background-clip: text;*/
+    /*color: transparent;*/
+    /*-webkit-background-clip: text;*/
+    /* background-image: linear-gradient(to right, gold, crimson);*/
+}
+
+
+video{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+}
+.titre-1{
+    font-weight: 900;
+    font-size: 100px;
+    line-height: 1;
+    -webkit-text-stroke: 2px #222;
+    opacity: 0.7;
+    color: transparent;
+    margin-left: 100px;
+    background-clip: text;
+    -webkit-background-clip: text;
+    background-image: linear-gradient(to bottom, gold 50%, crimson 50%);
+    transition: background-position ease-out 0.4s;
+    background-size: 1% 200%;
+}
+
+.titre-1:hover{
+    background-position: 0 -100%;
+}
 .navbar-item-custom a{
     color: #ffff;
 }
@@ -61,6 +109,11 @@ form{
     width: 100%;
     background-color: #dfeaff;
     padding-top: 25px;
-    margin-top: 15px;
+    margin-top: 50px;
     /*margin-bottom: 0;*/
+}
+
+.cart-icon{
+    height: 20px;
+    padding-left: 20px;
 }
