@@ -59,34 +59,42 @@ class Cart
     }
 
     public function decrease($id)
-{
-    $cart = $this->session->get('cart', []);
-    //vérifier si la quantité de notre produit =1, ce n'est plus une diminution , mais c'est une suppression
-    if($cart[$id] > 1) {
+    {
+        $cart = $this->session->get('cart', []);
+        //vérifier si la quantité de notre produit =1, ce n'est plus une diminution , mais c'est une suppression
+        if($cart[$id] > 1) {
 
-        //retirer une quantité
-        $cart[$id]--;
-    }else{
-        //suprimer mon produit
-        unset($cart[$id]);
-    }
-    $this->session->set('cart', $cart);
-}
-
-public function getFull(){
-    $cartComplete = [];
-
-    if ($this->get()){
-        foreach ($this->get() as $id => $quantity ) {
-            $cartComplete[] = [
-                'product' => $this->entityManager->getRepository(Product::class)->findOneById($id),
-                'quantity' => $quantity
-            ];
+            //retirer une quantité
+            $cart[$id]--;
+        }else{
+            //suprimer mon produit
+            unset($cart[$id]);
         }
+        $this->session->set('cart', $cart);
+    }
 
+    public function getFull(){
+        $cartComplete = [];
+
+        if ($this->get()){
+            foreach ($this->get() as $id => $quantity )
+            {
+                $product_object = $this->entityManager->getRepository(Product::class)->findOneById($id);
+
+                if (!$product_object) {
+                    $this->delete($id);
+                    continue;
+                }
+
+                $cartComplete[] = [
+                    'product' => $product_object,
+                    'quantity' => $quantity
+                ];
+            }
+
+
+        }
         return $cartComplete;
     }
-}
-
 
 }
