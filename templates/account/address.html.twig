@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes adresses | Nunik{% endblock %}
+
+{% block content %}
+    <a href = "{{ path('account_address_add') }}" class="btn btn-info btn-small float-right" >Ajouter une adresse</a >
+    <h1>Mes adresses</h1>
+
+    C'est dans cette espace que vous allez pouvoir gérer toutes vos adresses<br>
+    <a href = "{{ path('account') }}" >retour </a >
+    <hr>
+{#    {{dump (app.user) }}#}
+{% if app.user.addresses|length == 0 %}
+    <p class="text-center"    >Vous n'avez pas encore créer d'adresse dans votre compte. Pour en ajouter une, veuillez <a href = "" >Cliquer ici</a > </p>
+{% else %}
+
+        <div class="row">
+            {%  for address in app.user.addresses %}
+            <div class="col-md-4">
+                <div class="card" style="width: 18rem;">
+{#                    <img src="..." class="card-img-top" alt="...">#}
+                    <div class="card-body">
+                        <h5 class="card-title">{{address.name}}</h5>
+                        <p class="card-text">
+                            {{address.address}},<br >
+                            {{address.postal}} - {{ address.city }} - {{ address.country }}
+                        </p>
+                        <a href="{{ path('account_address_edit', { 'id' : address.id }) }}" >Modifier</a> | <a href="{{path('account_address_delete', {'id' : address.id})}}" >Supprimer</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+ {% endif %}
+    {#    {{  dump(app.user) }}#}
+{% endblock %}

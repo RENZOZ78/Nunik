@@ -3,13 +3,14 @@
 {% block title %}Mon compte | Nunik{% endblock %}
 
 {% block content %}
-        <h1>Mon compte</h1>
+    <h1>Mon compte</h1>
     Bienvenue {{  app.user.firstname }} dans votre compte.<br/>
-    C'est dans cette espace que vous allez pouvroi configurer vos données
+    C'est dans cette espace que vous allez pouvoir configurer vos données
     <hr>
     - <a href = "{{ path('account_password') }}" >  Modifier mon mot de passe</a ><br>
+    - <a href = "{{ path('account_address') }}" >  Gérer mes adresses</a ><br>
     - Ajouter mes addresses<br>
     - Mes commandes<br>
     <hr>
-{#    {{  dump(app.user) }}#}
+    {#    {{  dump(app.user) }}#}
 {% endblock %}
